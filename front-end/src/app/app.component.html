@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+      <span>{{ title }}</span>
+<span class="mat-icon-button">
+    <button mat-icon-button [matMenuTriggerFor]="rootMenu">
+      Menu
+    </button>
+</span>  
+    <mat-menu #rootMenu="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="subMenu">Cadastros</button>
+    </mat-menu>
+    
+    <mat-menu #subMenu="matMenu">
+      <a mat-menu-item href="video">Vídeos</a>
+      <a mat-menu-item href="usuario">Usuários</a>
+      <a mat-menu-item href="categoria">Categorias</a>
+      <!-- Coloque novos itens do submenu aqui -->
+    </mat-menu>
+  
+  </mat-toolbar>
+  
+  <div class="main-container">
+    <mat-card>
+      <router-outlet></router-outlet>
+    </mat-card>
+  </div>

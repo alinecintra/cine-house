@@ -1,0 +1,34 @@
+<mat-card-title>
+  Listagem de categorias
+</mat-card-title>
+
+<mat-card-actions>
+  <a mat-raised-button href="categoria/novo" color="accent">Nova categoria</a>
+</mat-card-actions>
+
+<mat-card-content>
+  <table mat-table [dataSource]="categorias">
+    
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef>Descrição</th>
+      <td mat-cell *matCellDef="let categoria">
+        <a [routerLink]="['/categoria', categoria._id]">
+          {{categoria.descricao}}
+        </a>
+      </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="excluir">
+      <th mat-header-cell *matHeaderCellDef>Excluir</th>
+      <td mat-cell *matCellDef="let artigo">
+        <button mat-flat-button color="warn" (click)="excluir(artigo._id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunasVisiveis"></tr>
+    <tr mat-row *matRowDef="let linhaTab; columns: colunasVisiveis"></tr>
+    
+  </table>
+</mat-card-content>

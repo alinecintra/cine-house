@@ -1,0 +1,49 @@
+<mat-card-title>
+  Listagem de videos
+</mat-card-title>
+
+<mat-card-actions>
+  <a mat-raised-button href="video/novo" color="accent">Novo vídeo</a>
+</mat-card-actions>
+
+<mat-card-content>
+  <table mat-table [dataSource]="videos">
+    
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef>Descrição</th>
+      <td mat-cell *matCellDef="let video">
+        <a [routerLink]="['/video', video._id]">
+          {{video.descricao}}
+        </a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="resumo">
+      <th mat-header-cell *matHeaderCellDef>Resumo</th>
+      <td mat-cell *matCellDef="let video">{{video.resumo}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="duracao">
+      <th mat-header-cell *matHeaderCellDef>Duração</th>
+      <td mat-cell *matCellDef="let video">{{video.duracao}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef>Categoria</th>
+      <td mat-cell *matCellDef="let video">{{(video.categoria || {}).descricao}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="excluir">
+      <th mat-header-cell *matHeaderCellDef>Excluir</th>
+      <td mat-cell *matCellDef="let video">
+        <button mat-flat-button color="warn" (click)="excluir(video._id)">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="colunasVisiveis"></tr>
+    <tr mat-row *matRowDef="let linhaTab; columns: colunasVisiveis"></tr>
+    
+  </table>
+</mat-card-content>
